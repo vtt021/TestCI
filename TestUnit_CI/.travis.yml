@@ -1,0 +1,8 @@
+language: csharp
+solution: TestUnit_CI.sln
+install:
+– nuget restore TestUnit_CI.sln
+– nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+– xbuild /p:Configuration=Release TestUnit_CI.sln
+– mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe           ./TestUnit_CI.Test/bin/Release/TestUnit_CI.Test.dll
